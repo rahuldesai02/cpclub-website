@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    {{>head}}
+    <body>
+        <div  class = "container">
+            <h1>CPClub</h1>
+            <h2>{{username}}</h2>
+            <ul>
+                <li>codechef profile: <a href='www.codechef.com/users/{{codechef_id}}'>{{codechef_id}}</a></li>
+                <li>codeforces profile: <a href='www.codeforces.com/profile/{{codeforces_id}}'>{{codeforces_id}}</a></li>
+                <li>Codechef rating: {{codechef_rating}}</li>
+                <li>Codeforces rating: {{codeforces_rating}}</li>
+                <li>Rank: {{rank}}</li>
+            </ul>
+            <h3>Growth</h3>
+            <div class = "container">
+                <canvas id="myChart">
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0">
+                    </script>
+                    <script>
+                        let ctx = document.getElementById('myChart').getContext('2d');
+                        let labels = '{{labels}}'.split(','), data = '{{data}}'.split(',')
+                        console.log(labels, data)
+                        let chart = new Chart(ctx, {
+                            // The type of chart we want to create
+                            type: 'line',
+                            // The data for our dataset
+                            data: {
+                                labels,
+                                datasets: [{
+                                    label: 'Rank',
+                                    backgroundColor: 'rgb(0, 0, 255)',
+					                borderColor: 'rgb(0, 0, 255)',
+                                    fill:false,
+                                    spanGaps:true,
+                                    lineTension:0,
+                                    data
+                                }]
+                            },
+                            // Configuration options go here
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                    ticks: {
+                                        reverse: true,
+                                    }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+                </canvas>
+            </div>
+            <h3>Badges</h3>
+            <!-- Todo -->
+        </div>
+    </body>
+</html>
